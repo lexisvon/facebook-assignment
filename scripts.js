@@ -37,40 +37,42 @@ window.addEventListener('load', function() {
 		modal.childNodes[1].childNodes[5].innerHTML = postText.childNodes[1].innerHTML;
 	});
 
-
+// create a variable for event
 	// Share Button modal close
 	var modalXClose = document.getElementsByClassName('modal__close')[0];
-	modalXClose.addEventListener('click', function() {
+	modalXClose.addEventListener('click', function(event) {
 		if (event.target == modalXClose) {
 			modal.style.display = "none";
 		}
 	});
 
 	// Share Button Modal Click outside to close 
-	modal.addEventListener('click', function() {
+	modal.addEventListener('click', function(event) {
 		if (event.target == modal) {
 			modal.style.display = "none";
 		}
 	});
 
 	// pop up modal for clicking on name
-	// var name = document.querySelectorAll('div media__info a'){
-	// 	for (var i = 0; i < name.length; i++) {
-	// 	name[i].addEventListener('click', function(){
-	// 		if (event.target.text == "Name 1"){
-	// 			modal.style.display = "block";
-	// 		}else{
-	// 			modal.style.display = "none";
-	// 		}
-	// 	});
-	// }
+	var name = document.querySelectorAll('div.media__info a');
+	for (var i = 0; i < name.length; i++) {
+		
+		name[i].addEventListener('click', function(event){
+
+			if (event.target.text == "Name 1"){
+				modal.style.display = "block";
+			}else{
+				modal.style.display = "none";
+			}
+		});
+	}
 	
 	
 
 	// Comment's Like
 	var commentLike = document.getElementsByClassName("comment__info");
 	for (var i = 0; i < commentLike.length; i++) {
-		commentLike[i].childNodes[1].addEventListener("click", function() {
+		commentLike[i].childNodes[1].addEventListener("click", function(event) {
 			currentLikes = parseInt(event.target.parentNode.childNodes[5].innerHTML.replace("likes", ""));
 			if (event.target.parentNode.childNodes[1].text == "Like") {
 				currentLikes += 1;
@@ -87,7 +89,7 @@ window.addEventListener('load', function() {
 	//Show the comment replies
 	var showReplies = document.getElementsByClassName("comment__info");
 	for (var i = 0; i < showReplies.length; i++) {
-		showReplies[i].childNodes[3].addEventListener("click", function() {
+		showReplies[i].childNodes[3].addEventListener("click", function(event) {
 			replies = event.target.parentNode.parentNode.childNodes[5];
 			if (replies.style.display == "none") {
 				replies.style.display = "block"
