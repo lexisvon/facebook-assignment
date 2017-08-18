@@ -1,5 +1,4 @@
 window.addEventListener('load', function() {
-
 	// Like Button
 	var like = document.getElementsByClassName("action action--like")[0];
 	like.addEventListener("click", function() {
@@ -15,23 +14,58 @@ window.addEventListener('load', function() {
 		postCounter[0].childNodes[1].innerHTML = currentLikes + " likes";
 	});
 
+
 	// Add a new Comment to main post
 	var comment = document.getElementsByClassName("action action--comment")[0];
 	comment.addEventListener("click", function() {
-		var commentArea = document.getElementsByTagName("textarea");
-		commentArea[5].focus();
+		var commentForm = document.getElementsByTagName("textarea");
+		commentForm[5].focus();
 	});
 
+	// Modal Variables 
+	var modal = document.getElementsByClassName('modal')[0];
+    var userName = document.getElementsByClassName("media__info")[0];
+    var postText = document.getElementsByClassName("post__body")[0];
 	// Share Button modal popup
+	
 	var share = document.getElementsByClassName('action action--share')[0];
 	share.addEventListener('click', function() {
-		modal = document.getElementsByClassName("modal");
-		userName = document.getElementsByClassName("media__info");
-		modal[0].childNodes[1].childNodes[3].innerHTML = userName[0].childNodes[1].text;
-		modal[0].style.display = "block";
-		postText = document.getElementsByClassName("post__body");
-		modal[0].childNodes[1].childNodes[5].innerHTML = postText[0].childNodes[1].innerHTML;
+		
+		modal.childNodes[1].childNodes[3].innerHTML = userName.childNodes[1].text;
+		modal.style.display = "block";
+		
+		modal.childNodes[1].childNodes[5].innerHTML = postText.childNodes[1].innerHTML;
 	});
+
+
+	// Share Button modal close
+	var modalXClose = document.getElementsByClassName('modal__close')[0];
+	modalXClose.addEventListener('click', function() {
+		if (event.target == modalXClose) {
+			modal.style.display = "none";
+		}
+	});
+
+	// Share Button Modal Click outside to close 
+	modal.addEventListener('click', function() {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	});
+
+	// pop up modal for clicking on name
+	// var name = document.querySelectorAll('div media__info a'){
+	// 	for (var i = 0; i < name.length; i++) {
+	// 	name[i].addEventListener('click', function(){
+	// 		if (event.target.text == "Name 1"){
+	// 			modal.style.display = "block";
+	// 		}else{
+	// 			modal.style.display = "none";
+	// 		}
+	// 	});
+	// }
+	
+	
 
 	// Comment's Like
 	var commentLike = document.getElementsByClassName("comment__info");
@@ -49,6 +83,7 @@ window.addEventListener('load', function() {
 		});
 	}
 
+
 	//Show the comment replies
 	var showReplies = document.getElementsByClassName("comment__info");
 	for (var i = 0; i < showReplies.length; i++) {
@@ -61,5 +96,7 @@ window.addEventListener('load', function() {
 			}
 		});
 	}
-	
+	// Submitting a comment form Alert!
+
+	// clicking reply puts cursor in textarea
 });
